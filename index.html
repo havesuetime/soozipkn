@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko"><link rel="stylesheet" href="css/index.css"/>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>수빈 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- 로딩 -->
+<div id="loading-screen">
+  <div>Loading...</div>
+  <div class="loading-bar"><div class="loading-bar-fill" id="loading-fill"></div></div>
+  <div id="loading-percent">0%</div>
+</div>
+
+<!-- 배너 -->
+<div class="banner"><div class="banner-text">Hello * my na it's my yellowness space. * Enjoy exploring!</div></div>
+
+<!-- 컨테이너 -->
+<div class="container" id="container">
+
+  <!-- 메인 -->
+  <section class="main" id="main">
+    <h1><span id="typing-text"></span><span class="cursor"></span></h1>
+    <div class="scroll-icon"></div>
+  </section>
+
+  <!-- About -->
+  <section id="intro">
+    About
+    <div class="about-popup" id="aboutPopup">
+      노란색이 가진 따뜻함과 에너지를 담아<br>
+      보는 사람들에게 다채로운 기쁨을 주는 디자인을 만듭니다.<br>
+      즐겁고 긍정적인 생각을 디자인에 녹여,<br>
+      세상을 더 밝게 빛나게 하는 것이 저의 목표입니다.<br>
+    </div>
+  </section>
+
+<!-- Profile Section -->
+<section id="skills">
+  Profile
+  <div class="profile-popup" id="profilePopup">
+    <img src="img/profile1.JPG" alt="Profile" 
+         style="width:110px; height:140px; border-radius:50%; margin-bottom:15px;">
+
+    <!-- 이름만 별도 클래스 적용 -->
+    <h3 class="profile-name">SHIN SU BIN</h3>
+
+    <h4 class="profile-job">Designer</h4><br>
+    <h5 class="profile-birth">2001.05.30</h5>
+
+  </div>
+</section>
+
+
+
+  <!-- Works -->
+  <section id="projects">
+    <h2 class="works-title">Works</h2>
+    <div class="works-box">
+      <div class="works-gallery">
+        <div class="work-item" data-info="Weather mockup">
+          <img src="img/weathermockup.png" alt="work1">
+        </div>
+        <div class="work-item" data-info="Clock">
+          <img src="img/clockposter.gif" alt="work2">
+        </div>
+        <div class="work-item" data-info="Book cover">
+          <img src="img/bookcovermockup.png" alt="work3">
+        </div>
+        <div class="work-item" data-info="Cafe poster">
+          <img src="img/cafemockup.png" alt="work4">
+        </div>
+        <div class="work-item" data-info="Cafe menu">
+          <img src="img/cafemockupmenu.png" alt="work5">
+        </div>
+        <div class="work-item" data-info="Cafe poster">
+          <img src="img/cafemockupposter1.png" alt="work6">
+        </div>
+        <div class="work-item" data-info="Bag mockup">
+          <img src="img/bagmockup.png" alt="work7">
+        </div>
+        <div class="work-item" data-info="Fruit package mockup">
+          <img src="img/fruitpackagemockup.png" alt="work8">
+        </div>
+        <div class="work-item" data-info="Hamburger stamp">
+          <img src="img/hamburgerstamp.png" alt="work9">
+        </div>
+        <div class="work-item" data-info="Hamburger menu">
+          <img src="img/hamburgermockup.png" alt="work10">
+        </div>
+        <div class="work-item" data-info="Flower poster">
+          <img src="img/flowerposter.png" alt="work11">
+        </div>
+        <div class="work-item" data-info="Summer poster">
+          <img src="img/summerposter.png" alt="work12">
+        </div>
+        <div class="work-item" data-info="Envelope poster">
+          <img src="img/envelope.png" alt="work13">
+        </div>
+        <div class="work-item" data-info="Youth poster">
+          <img src="img/youthposter.png"alt="work14">
+        </div>
+        <div class="work-item" data-info="Poster mockup">
+          <img src="img/albumcover.png" alt="work15">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-popup" id="contactPopup">
+      언제든 문의주시면<br>
+      최선을 다해 답변 드리겠습니다.<br>
+      디자인 관련 상담, 프로젝트 제안,<br>
+      또는 그 외 문의 모두 환영합니다.<br>
+      <p>sumhnerol@gmail.com<br>insta @soozipkn</br></p>
+      <p>감사합니다!</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Work 팝업 -->
+<div id="workPopup" class="work-popup">
+  <div class="work-popup-content">
+    <span class="close-btn">&times;</span>
+    <img id="workImage" src="" alt="작업물 이미지" style="max-width:100%; border-radius:8px; margin-bottom:15px;">
+    <p id="workDescription"></p>
+  </div>
+</div>
+
+
+<script>
+// 별 생성
+for(let i=0;i<150;i++){
+  const star=document.createElement("div");
+  star.classList.add("star");
+  star.style.top=`${Math.random()*100}%`;
+  star.style.left=`${Math.random()*100}%`;
+  star.style.animationDuration=`${1+Math.random()*2}s`;
+  document.body.appendChild(star);
+}
+
+// Work 팝업
+const workPopup=document.getElementById("workPopup");
+const workDescription=document.getElementById("workDescription");
+const workImage=document.getElementById("workImage");
+const closeBtn=document.querySelector(".close-btn");
+document.querySelector(".works-gallery").addEventListener("click",(e)=>{
+  const target=e.target.closest(".work-item");
+  if(target){
+    workDescription.textContent=target.getAttribute("data-info");
+    workImage.src=target.querySelector("img").src;
+    workPopup.style.display="flex";
+  }
+});
+closeBtn.addEventListener("click",()=>workPopup.style.display="none");
+window.addEventListener("click",(e)=>{if(e.target===workPopup) workPopup.style.display="none";});
+window.addEventListener("keydown",(e)=>{if(e.key==="Escape") workPopup.style.display="none";});
+
+// 스크롤 + 팝업
+const container=document.getElementById('container');
+const aboutPopup=document.getElementById('aboutPopup');
+const contactPopup=document.getElementById('contactPopup');
+const introSection=document.getElementById('intro');
+const contactSection=document.getElementById('contact');
+container.addEventListener('scroll',()=>{
+  const maxScroll=container.scrollHeight-container.clientHeight;
+  const scrollRatio=container.scrollTop/maxScroll;
+  const lerp=(s,e,t)=>Math.round(s+(e-s)*t);
+  const day1=[255,249,196], day2=[255,241,118];
+  const night1=[25,25,112], night2=[72,61,139];
+  const top=day1.map((v,i)=>lerp(v,night1[i],scrollRatio));
+  const bottom=day2.map((v,i)=>lerp(v,night2[i],scrollRatio));
+  document.body.style.background=`linear-gradient(to bottom right,rgb(${top}),rgb(${bottom}))`;
+
+  const introRect=introSection.getBoundingClientRect();
+  const contactRect=contactSection.getBoundingClientRect();
+  const containerRect=container.getBoundingClientRect();
+
+  if(introRect.top>=containerRect.top && introRect.bottom<=containerRect.bottom) aboutPopup.classList.add('visible');
+  else aboutPopup.classList.remove('visible');
+
+  if(contactRect.top>=containerRect.top && contactRect.bottom<=containerRect.bottom) contactPopup.classList.add('visible');
+  else contactPopup.classList.remove('visible');
+});
+
+// 로딩
+let loadPercent=0;
+const loadingFill=document.getElementById('loading-fill');
+const loadingPercent=document.getElementById('loading-percent');
+const interval=setInterval(()=>{
+  loadPercent+=2+Math.random()*5;
+  if(loadPercent>=100) loadPercent=100;
+  loadingFill.style.width=`${loadPercent}%`;
+  loadingPercent.textContent=`${Math.floor(loadPercent)}%`;
+  if(loadPercent>=100){
+    clearInterval(interval);
+    setTimeout(()=>{document.getElementById('loading-screen').style.display='none'; setTimeout(startTyping,200);},500);
+  }
+},50);
+
+// 타이핑
+const mainTitle=document.getElementById('typing-text');
+const text='portfolio';
+const colors=['#FFD54F','#FFB300','#F57F17','#FFCA28','#FFA000','#FBC02D','#F9A825','#F57F17','#FF8F00'];
+let index=0;
+function startTyping(){
+  if(index<text.length){
+    const span=document.createElement('span');
+    span.textContent=text[index];
+    span.style.color=colors[index%colors.length];
+    span.style.opacity='0';
+    span.style.transition='opacity 0.5s ease';
+    mainTitle.appendChild(span);
+    setTimeout(()=>{span.style.opacity='1';},50);
+    index++;
+    setTimeout(startTyping,200);
+  }
+}
+
+// 떨어지는 별 마우스
+document.addEventListener('mousemove',e=>{
+  const star=document.createElement('div');
+  star.className='falling-star';
+  star.style.left=`${e.clientX}px`;
+  star.style.top=`${e.clientY}px`;
+  document.body.appendChild(star);
+  let dx=(Math.random()-0.5)*2;
+  let dy=2+Math.random()*3;
+  const move=()=> {
+    const top=parseFloat(star.style.top);
+    const left=parseFloat(star.style.left);
+    if(top>window.innerHeight){ star.remove(); return; }
+    star.style.top=top+dy+'px';
+    star.style.left=left+dx+'px';
+    requestAnimationFrame(move);
+  }
+  move();
+});
+
+const profilePopup = document.getElementById('profilePopup');
+const skillsSection = document.getElementById('skills');
+let skillsAnimated = false; // 한 번만 실행
+
+container.addEventListener('scroll', ()=>{
+  const skillsRect = skillsSection.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  if(skillsRect.top >= containerRect.top && skillsRect.bottom <= containerRect.bottom){
+    profilePopup.classList.add('visible');
+
+    if(!skillsAnimated){  // 한 번만 애니메이션 실행
+      profilePopup.querySelectorAll('.skill-fill').forEach(bar=>{
+        const percent = bar.getAttribute('data-percent');
+        bar.style.width = percent + '%';
+      });
+      skillsAnimated = true;
+    }
+
+  } else {
+    profilePopup.classList.remove('visible');
+    // 스크롤 올라가도 게이지 초기화 안 하고 한 번만 채우기
+  }
+});
+
+</script>
+</body>
+</html>

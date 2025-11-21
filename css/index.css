@@ -1,0 +1,168 @@
+html, body {
+  margin:0; padding:0; height:100%;
+  font-family:'Press Start 2P', cursive;
+  overflow:hidden; cursor:default !important;
+}
+* { cursor:default !important; }
+body { background:linear-gradient(to bottom right,#fff9c4,#fff176); transition: background 0.5s ease; }
+
+/* 로딩 화면 */
+#loading-screen { position:fixed; top:0; left:0; width:100vw; height:100vh; background:#111; color:yellow; font-size:1rem; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; }
+.loading-bar { width:120px; height:12px; background:#111; border:2px solid yellow; margin-top:1rem; position:relative; }
+.loading-bar-fill { background:yellow; width:0%; height:100%; transition:width 0.3s ease; }
+#loading-percent { margin-top:1.5rem; }
+
+/* 배너 */
+.banner { position:fixed; top:0; width:100%; overflow:hidden; background:transparent; z-index:998; height:40px; display:flex; align-items:center; font-size:0.8rem; }
+.banner-text { white-space:nowrap; display:inline-block; color:#333; animation:scrollBanner 10s linear infinite; padding-left:100%; }
+@keyframes scrollBanner { 0%{transform:translateX(0%);}100%{transform:translateX(-100%);} }
+
+/* 컨테이너 */
+.container { padding-top:130px; scroll-snap-type:y mandatory; overflow-y: scroll; height:100vh; position:relative; z-index:1; }
+section { height:100vh; display:flex; align-items:center; justify-content:center; font-size:2rem; scroll-snap-align:start; padding:20px; text-align:center; color:#333; position:relative; z-index:1; box-sizing:border-box; }
+
+/* 별 */
+.star { position:absolute; width:5px; height:5px; background-color:#fdd835; border-radius:50%; animation:twinkle 2s infinite ease-in-out; pointer-events:none; z-index:0; }
+@keyframes twinkle { 0%,100%{opacity:0.3;transform:scale(1);}50%{opacity:1;transform:scale(1.5);} }
+
+/* 타이핑 */
+.cursor { display:inline-block; width:1ch; background-color:#333; animation:blink 1s step-start infinite; }
+@keyframes blink { 50%{background-color:transparent;} }
+
+/* 팝업 */
+.about-popup, .contact-popup { font-family:'Nanum Gothic',sans-serif; background:#fff; border:2px solid #333; position:fixed; bottom:-250px; left:50%; transform:translateX(-50%); max-width:600px; width:80%; padding:20px; font-size:1rem; color:#333; line-height:1.8em; opacity:0; transition:all 0.6s cubic-bezier(0.25,1.25,0.5,1); z-index:100; box-sizing:border-box; }
+.about-popup.visible, .contact-popup.visible { bottom:80px; opacity:1; }
+.about-popup::after, .contact-popup::after{display:none;}
+
+/* Profile 팝업 */
+
+
+.profile-popup {
+  background:#fff; 
+  border:2px solid #333; 
+  position:fixed; 
+  bottom:-250px; 
+  left:50%; 
+  transform:translateX(-50%); 
+  max-width:400px; 
+  width:80%; 
+  padding:20px; 
+  font-size:1rem; 
+  color:#333; 
+  line-height:1.8em; 
+  opacity:0; 
+  transition:all 0.6s cubic-bezier(0.25,1.25,0.5,1); 
+  z-index:100; 
+  box-sizing:border-box;
+}
+
+
+/* Profile 팝업 전체 기본 폰트 */
+.profile-popup {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 이름만 따로 적용 */
+.profile-name {
+  font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+
+.profile-popup.visible { bottom:80px; opacity:1; }
+
+/* 스킬바 
+.skill-bar {
+  width:100%; 
+  background:#eee; 
+  border:1px solid #ccc; 
+  border-radius:8px; 
+  margin-bottom:10px; 
+  overflow:hidden;
+}
+.skill-fill {
+  height:20px; 
+  background:#FFD54F; 
+  width:0%; 
+  text-align:right; 
+  padding-right:5px; 
+  line-height:20px; 
+  color:#333; 
+  font-size:0.8rem; 
+  border-radius:8px;
+  transition: width 1s ease;
+}
+*/
+
+.profile-popup h4, 
+.profile-popup h5 {
+  margin: 0;           /* 블록 기본 마진 제거 */
+  padding: 0;          /* 혹시 padding 있는 경우 제거 */
+  line-height: 1.1;    /* 줄간격 줄이기 */
+  display: inline-block; /* 블록 → 인라인블록으로 바꿔서 간격 제어 */
+  font-family:'Nanum Gothic', sans-serif;
+}
+
+
+
+
+
+/* 스크롤바 */
+.container::-webkit-scrollbar { width:12px; background:#fff9c4; border-left:3px solid #fff176; }
+.container::-webkit-scrollbar-thumb { background-color:#ffca28; border:2px solid #b38f00; border-radius:0; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff; }
+
+/* Scroll 아이콘 */
+.scroll-icon { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); width:24px; height:40px; border:2px solid #333; border-radius:12px; display:flex; justify-content:center; align-items:flex-start; padding-top:4px; box-sizing:border-box; z-index:1; }
+.scroll-icon::after { content:''; width:6px; height:6px; background:#333; border-radius:50%; animation:scrollBounce 1s infinite; }
+@keyframes scrollBounce { 0%{transform:translateY(0);opacity:0;}50%{transform:translateY(10px);opacity:1;}100%{transform:translateY(0);opacity:0;} }
+
+/* Works 갤러리 중앙 정렬 */
+#projects {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  padding:20px;
+  box-sizing:border-box;
+}
+.works-box {
+  background:#fff;
+  width:100%;
+  max-width:960px;
+  height:70%;
+  padding:20px;
+  overflow-y:auto;
+  border:0;
+  box-sizing:border-box;
+}
+.works-title { font-size:1.5rem; margin-bottom:20px; color:#333; }
+.works-gallery { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; padding:20px; box-sizing:border-box; }
+.work-item { width:100%; aspect-ratio:4/3; overflow:hidden; cursor:pointer !important; transition:transform 0.3s ease; }
+.work-item img { width:100%; height:100%; object-fit:contain; }
+.work-item:hover { transform:scale(1.05); }
+/* 모바일 (2개씩 정렬) */
+@media (max-width:768px){ .works-gallery { grid-template-columns:repeat(2, 1fr); } }
+
+/* Work 팝업 */
+.work-popup { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:2000; }
+.work-popup-content { background:#fff; padding:20px; max-width:600px; width:80%; text-align:center; border-radius:8px; position:relative; }
+.close-btn { position:absolute; top:10px; left:10px; font-size:2rem; cursor:pointer; display: none !important; }
+.work-popup-content img {
+  max-width: 100%;
+  max-height: 70vh; /* 🔥 화면 높이의 80%까지만 */
+  object-fit: contain; /* 비율 유지하면서 안 잘리게 */
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* 떨어지는 별 */
+.falling-star {
+  position:absolute;
+  width:6px; height:6px;
+  background:#fdd835;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0.8;
+  z-index:5;
+}
